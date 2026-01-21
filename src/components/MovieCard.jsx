@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MovieCard = React.memo(({ movie }) => {
   return (
     <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <div className="movie-card" style={{ cursor: 'pointer' }}>
+      <div className="movie-card" >
         <img
           src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
           alt={movie.title}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchMovies } from "../APIs/movies";
 import MovieCard from "../components/MovieCard";
 import Loader from "../components/loader";
+import "../App.css";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -14,44 +15,43 @@ export default function Home() {
   }, [page]);
 
   async function loadMovies() {
-  try {
-    setLoading(true);
-    const res = await fetchMovies(page);
+    try {
+      setLoading(true);
+      const res = await fetchMovies(page);
 
-    if (res?.results) {
-      setMovies((prev) => {
-        
-        const existingIds = new Set(prev.map((m) => m.id));
-        
-        const uniqueNewMovies = res.results.filter((m) => !existingIds.has(m.id));
-        
-        return [...prev, ...uniqueNewMovies];
-      });
+      if (res?.results) {
+        setMovies((prev) => {
+          const existingIds = new Set(prev.map((m) => m.id));
+          const uniqueNewMovies = res.results.filter((m) => !existingIds.has(m.id));
+          return [...prev, ...uniqueNewMovies];
+        });
+      }
+    } catch (err) {
+      setError("Failed to load movies. Please check your connection.");
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    setError("Failed to load movies");
-  } finally {
-    setLoading(false);
   }
-}
 
   return (
-    <>
-      <h1>CineStream</h1>
+    <div className="home-container">
+      <h1 className="brand-title">CineStream</h1>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error-msg">{error}</p>}
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 20 }}>
-        {movies.map(movie => (
+      <div className="movie-grid">
+        {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
 
       {loading && <Loader />}
 
-      <button onClick={() => setPage(p => p + 1)}>
-        Load More
-      </button>
-    </>
+      {!loading && movies.length > 0 && (
+        <button className="load-more-btn" onClick={() => setPage((p) => p + 1)}>
+          LOAD MORE
+        </button>
+      )}
+    </div>
   );
 }
