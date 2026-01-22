@@ -1,0 +1,40 @@
+.search-container {
+  position: relative;
+  width: 260px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: #000;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #e50914;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  background: #111;
+  border-radius: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.search-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  color: #ddd;
+}
+
+.search-dropdown li:hover {
+  background: #e50914;
+  color: #fff;
+}

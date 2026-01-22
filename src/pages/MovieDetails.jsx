@@ -1,42 +1,58 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovieDetails } from "../APIs/movies";
-import Loader from "../components/loader";
+import Loader from "./components/loader";
+
 
 export default function MovieDetails() {
   const { id } = useParams();
+
   const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    let isMounted = true;
+
+    async function loadMovie() {
+      setLoading(true);
+      setError("");
+
+      try {
+        const data = await fetchMovieDetails(id);
+        if (isMounted) setMovie(data);
+      } catch (err) {
+        setError("Failed to load movie details. Please try again.");
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+
     loadMovie();
+
+    return () => {
+      isMounted = false; // prevents memory leaks
+    };
   }, [id]);
 
-  async function loadMovie() {
-    try {
-      const res = await fetchMovieDetails(id);
-      setMovie(res);
-    } catch (err) {
-      setError("Failed to load movie details");
-    }
-  }
+  if (loading) return <Loader />;
+  if (error) return <p className="error">{error}</p>;
 
-  if (error) return <p>{error}</p>;
-  if (!movie) return <Loader />;
+  const posterUrl = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : "/no-poster.png";
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>{movie.title}</h1>
+    <div className="movie-details">
+      <img src={posterUrl} alt={movie.title} className="movie-poster" />
 
-      <img
-        src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-        alt={movie.title}
-        style={{ borderRadius: "12px" }}
-      />
+      <div className="movie-info">
+        <h1>{movie.title}</h1>
 
-      <p><strong>Overview:</strong> {movie.overview}</p>
-      <p><strong>Rating:</strong> ⭐ {movie.vote_average}</p>
-      <p><strong>Release Date:</strong> {movie.release_date}</p>
+        <p><strong>Overview:</strong> {movie.overview}</p>
+        <p><strong>Rating:</strong> ⭐ {movie.vote_average}</p>
+        <p><strong>Release Date:</strong> {movie.release_date}</p>
+      </div>
     </div>
   );
 }

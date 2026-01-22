@@ -2,8 +2,9 @@
 import {Link} from "react-router-dom";
 import "../style/navbar.css";
 import logo from "../assets/cinestream.png";
+import SearchBar from "./SearchBar";
 
-const Navbar = () => {
+const Navbar = ( {searchTerm, setSearchTerm}) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -11,7 +12,10 @@ const Navbar = () => {
         <span className="navbar-title">CineStream</span>
       </div>
 
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+
       <div className="navbar-right">
+
             <Link to="/" className="nav-btn"> Movies</Link>
             <Link to ="/My-list" className="nav-btn">My List</Link>
             <Link to ="/payments" className="nav-btn">Subscribe</Link>
