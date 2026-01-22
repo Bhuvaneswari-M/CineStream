@@ -15,6 +15,12 @@ body {
 .home-container {
   padding: 40px 20px;
 }
+.content-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+}
 
 .brand-title {
   color: var(--netflix-red);
@@ -24,16 +30,13 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-
 .movie-grid {
   display: grid;
-  /* Screen size-ku thaguntha maari columns adjust aagum */
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
   gap: 25px;
   padding-bottom: 40px;
 }
 
-/* Load More Button Styling */
 .load-more-btn {
   background-color: var(--netflix-red);
   color: white;

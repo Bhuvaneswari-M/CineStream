@@ -4,7 +4,7 @@ import MovieCard from "../components/MovieCard";
 import Loader from "../components/loader";
 import "../App.css";
 
-export default function Home() {
+export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);

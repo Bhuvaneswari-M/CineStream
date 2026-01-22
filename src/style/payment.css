@@ -1,0 +1,48 @@
+.payment-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #262323;
+    color: rgb(244, 239, 239);
+}
+#payment-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style:italic;
+    color: rgb(162, 154, 154);
+}
+.plane-card {
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #1c1a1a;
+}
+.input-group {
+    margin-bottom: 15px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333030;
+    color: #eee;
+}
+button{
+    width: 40%;
+    padding:10px;
+    font-weight: 700;
+    background-color: rgb(218, 20, 20);
+    color:#fff;
+    border: none;
+    border-radius: 6px;
+}
