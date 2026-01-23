@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovieDetails } from "../APIs/movies";
-import Loader from "./components/loader";
+import Loader from "../components/Loader";
+
 
 
 export default function MovieDetails() {

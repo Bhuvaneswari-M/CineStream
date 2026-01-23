@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { makePayment } from "../APIs/payment";
 import "../style/payment.css";
-//import {UseNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export default function Payments() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(""); 
-  //const Navigate = UseNavigate();
+  const navigate = useNavigate("");
   const handlePay = async (e) => {
     e.preventDefault(); 
     setError(""); 
@@ -16,7 +16,7 @@ export default function Payments() {
       //await makePayment({ amount: 499 });
       alert("Payment Successful!");
       console.log("Payment processed",e.target.cardNumber.value );
-      //Navigate("/");
+      navigate("/");
     } catch (err) {
       
       setError(err.message || "Something went wrong. Please try again."); 

@@ -14,7 +14,15 @@ export const fetchMovies = async (page=1) =>{
         return response.data;
     } catch(error){
         console.error("API Error Response:", error.response?.data);
-        throw new error(`Failed to fetch movies: ${error.message}`);
+        throw new Error(`Failed to fetch movies: ${error.message}`);
     }
 };
 
+export const searchMovies = async (query) => {
+  try {
+    const response = await api.get(`/search/movie?query=${encodeURIComponent(query)}`);
+    return response.data.results;
+  } catch (error) {
+    throw new Error(`Search failed: ${error.message}`);
+  }
+};

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import api from "../APIs/axiosInstance"; 
 
 export const MoviesContext = createContext();
 
@@ -7,9 +7,10 @@ export const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get("https://api.example.com/movies")
-      .then(res => setMovies(res.data))
-      .catch(err => console.error(err));
+    
+    api.get("/movie/popular") 
+      .then(res => setMovies(res.data.results))
+      .catch(err => console.error("Context Fetch Error:", err));
   }, []);
 
   return (

@@ -1,10 +1,11 @@
 .login-container{
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 40px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+   width: 100%;
+  max-width: 450px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 8px;
+  box-sizing: border-box; /* Crucial fix for width issues */
 }
 
 h2{
